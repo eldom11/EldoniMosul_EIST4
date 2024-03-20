@@ -1,0 +1,31 @@
+#include <Arduino.h>
+
+#define pir 2 //sesuaikan pin yang terhubung dengan pin D  disensor pir
+
+#define buzzer 13 //sesuaikan pin yang terhubung dengan kutub positif buzzer/kabel merah
+
+void setup() {
+
+  pinMode(pir, INPUT);
+
+  pinMode(buzzer, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  int gerakgerak = digitalRead(pir); //buat variable untuk membaca nilai sensor pir nya
+
+  //buat logika untuk kondisi variablenya, high tegangannya tinggi berarti buzzer nyala, low sebaliknya.
+  if (gerakgerak == HIGH) {
+    Serial.println("TULUNGGG-TULUNGG ADA MALINGGG");
+    digitalWrite(buzzer, HIGH); //nyalahin buzzer nya
+  } else {
+    Serial.println("Aman bosss, Situasi aman terkendali");
+    digitalWrite(buzzer, LOW); //matiin buzzer nya
+  }
+
+  //delay pembacaan sensor agar tidak nyala terus
+  delay(1000);
+}
